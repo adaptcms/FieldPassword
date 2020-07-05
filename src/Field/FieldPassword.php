@@ -9,6 +9,25 @@ use Hash;
 class FieldPassword extends FieldType
 {
   /**
+  * @var array
+  */
+  public $defaultSettings = [
+    'options' => [
+      'is_sortable'        => false,
+      'is_searchable'      => false,
+      'is_required_create' => true,
+      'is_required_edit'   => false
+    ],
+    'action_rules' => [
+      'index'  => false,
+      'create' => true,
+      'edit'   => true,
+      'show'   => false,
+      'search' => false
+    ]
+  ];
+
+  /**
   * Rules applied when record is being stored with a post type.
   *
   * @var array
