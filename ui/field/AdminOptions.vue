@@ -9,15 +9,19 @@ import { isEmpty } from 'lodash'
 
 export default {
   props: [
-    'value',
+    'modelValue',
     'field',
     'package',
     'errors',
     'fields'
   ],
 
+  emits: [
+    'update:modelValue'
+  ],
+
   watch: {
-    value (newVal, oldVal) {
+    modelValue (newVal, oldVal) {
       if (newVal !== oldVal) {
         this.selected = newVal
       }
@@ -25,7 +29,7 @@ export default {
 
     selected: {
       handler: function (newVal, oldVal) {
-        this.$emit('input', newVal)
+        this.$emit('update:modelValue', newVal)
       },
       deep: true
     }
@@ -38,8 +42,8 @@ export default {
   },
 
   mounted () {
-    if (!isEmpty(this.value)) {
-      this.selected = this.value
+    if (!isEmpty(this.modelValue)) {
+      this.selected = this.modelValue
     }
   }
 }
